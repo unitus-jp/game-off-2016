@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Banana : MonoBehaviour {
+public class Banana : MonoBehaviour{
 
     public GameObject explosion;
     public int getScore;

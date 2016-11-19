@@ -13,6 +13,9 @@ public class Shooter : MonoBehaviour {
     public LayerMask mask;
     public AudioSource gunAudio;
     public GameObject explosionAudio;
+    private Banana bananaScript;
+    [HideInInspector]
+    public bool isShoot;
 
     void Awake()
     {
@@ -45,6 +48,8 @@ public class Shooter : MonoBehaviour {
 
             if(hit.collider.gameObject.tag == "Banana")
             {
+                bananaScript = hit.collider.gameObject.GetComponent<Banana>();
+                bananaScript.ExplodeObject();
                 Instantiate(explosionAudio, hit.point, Quaternion.identity);
             }
         }
@@ -76,6 +81,8 @@ public class Shooter : MonoBehaviour {
 
                 if(hit.collider.gameObject.tag == "Banana")
                 {
+                    bananaScript = hit.collider.gameObject.GetComponent<Banana>();
+                    bananaScript.ExplodeObject();
                     Instantiate(explosionAudio, hit.point, Quaternion.identity);
                 }
             }

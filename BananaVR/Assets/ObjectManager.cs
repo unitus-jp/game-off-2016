@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +13,13 @@ public class ObjectManager : MonoBehaviour {
     public float Timeboard;
     public Text timeText;
     public Image timeSlider;
+    public Shooter shooter;
 
-	// Use this for initialization
-	void Start () 
+    public void GameStart()
     {
+        shooter.isShoot = true;
         StartCoroutine(BananaSpawn());
-	}
+    }
 	
     IEnumerator BananaSpawn()
     {
@@ -35,5 +36,6 @@ public class ObjectManager : MonoBehaviour {
             timeSlider.fillAmount = Timeboard / limitTime;
         }
 
+        shooter.isShoot = false;
     }
 }
