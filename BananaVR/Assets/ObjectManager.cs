@@ -38,4 +38,14 @@ public class ObjectManager : MonoBehaviour {
 
         shooter.isShoot = false;
     }
+
+    void RandomPos()
+    {
+        float randomPos = Random.Range(-3f, 3f);
+
+        if (randomPos > -1f && randomPos < 1f)
+        {
+            RandomPos();
+        }
+    }
 }
