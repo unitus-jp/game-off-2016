@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public ObjectManager objectManager;
     public ScoreManager scoreManager;
 
+    private GameObject[] bananaPool;
+
     public enum GameMode
     {
         INTRO,
@@ -68,14 +70,28 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("end");
                 CanvasReset();
                 OutroCanvas.SetActive(true);
-
                 scoreManager.UpdateHighScore();
 
-                if (Input.GetMouseButtonDown(0) && !shooter.isShoot)
+                bananaPool = GameObject.FindGameObjectsWithTag("Banana");
+
+                for (int i = 0; i < bananaPool.Length; i++)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    bananaPool[i].SetActive(false);
                 }
+
+                StartCoroutine(Reload());
+
                 break;
         }
 	}
+
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(5f);
+
+        if (Input.GetMouseButtonDown(0) && !shooter.isShoot)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 }
